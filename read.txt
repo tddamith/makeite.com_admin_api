@@ -1,0 +1,52 @@
+step 01 :
+mkdir -p fastapi_mongo_project/app/{api/v1,core,models,db,services,schemas}
+touch fastapi_mongo_project/app/api/{__init__.py}
+touch fastapi_mongo_project/app/api/v1/{__init__.py,routes.py}
+touch fastapi_mongo_project/app/core/{__init__.py,config.py}
+touch fastapi_mongo_project/app/models/{__init__.py,user.py}
+touch fastapi_mongo_project/app/db/{__init__.py,database.py}
+touch fastapi_mongo_project/app/services/{__init__.py,user_service.py}
+touch fastapi_mongo_project/app/schemas/{__init__.py,user.py}
+touch fastapi_mongo_project/app/main.py
+touch fastapi_mongo_project/.env
+touch fastapi_mongo_project/requirements.txt
+
+step 02 :
+ python3 -m pip install pydantic_settings
+ python3 -m pip install --upgrade pip
+ python3.11 -m pip --version
+ python3 -m pip uninstall pydantic-settings
+
+ pip cache purge
+ pip3 freeze requirements.txt
+ pip install -r requirements.txt
+
+sudo -H pip install motor
+pip3 install -r requirements.txt
+pip install fastapi motor pydantic python-dotenv
+pip show email-validator
+
+pip3 install --user aiomysql
+
+uvicorn app.main:app --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8080
+
+export PATH="$PATH:/Users/damithpremakumara/Library/Python/3.x/bin"
+
+
+Create the Environment:
+    • python3 -m venv venv
+	•	Activate the Environment: source venv/bin/activate (macOS/Linux) or venv\Scripts\activate (Windows)
+	•	Install Dependencies: pip install -r requirements.txt
+	•	Deactivate: deactivate
+
+python -m py_compile app/api/v1/upload_imag.py
+
+import sys
+sys.path.append('/path/to/schemas')
+
+
+pip3 show aiomysql
+pip install -r requirements.txt
+pip list
+
