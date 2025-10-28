@@ -40,5 +40,5 @@ async def shutdown_db():
 
 
 
-app.include_router(category_router, prefix="/api/v1/categories", tags=["Categories"])
-app.include_router(sub_category_router, prefix="/api/v1/sub-categories", tags=["Sub-Categories"])
+app.include_router(category_router, prefix="/api/v1", tags=["Categories"])
+app.include_router(sub_category_router, prefix="/api/v1", tags=["Sub-Categories"])

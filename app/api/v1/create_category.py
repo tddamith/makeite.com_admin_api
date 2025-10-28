@@ -79,3 +79,17 @@ async def update_category(category_id: str, category: CategoryBase):
         return {"message": "Category updated successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
+    
+#delete category
+@router.delete("/delete/category/by/{category_id}")
+async def delete_category(category_id: str):
+    """Delete a category."""
+    try:
+        category_collection = await mongo.get_collection("categories")
+        
+        result = await category_collection.delete_one({"category_id": category_id})
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Category not found.")
+        return {"message": "Category deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
