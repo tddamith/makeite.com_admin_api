@@ -2,6 +2,7 @@ from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.create_category import router as category_router
 from app.api.v1.create_sub_category import router as sub_category_router
+from app.api.v1.create_template import router as template_router
 from app.db.database import connect_all, close_all
 import logging
 import re
@@ -42,3 +43,4 @@ async def shutdown_db():
 
 app.include_router(category_router, prefix="/api/v1", tags=["Categories"])
 app.include_router(sub_category_router, prefix="/api/v1", tags=["Sub-Categories"])
+app.include_router(template_router, prefix="/api/v1", tags=["Templates"])
