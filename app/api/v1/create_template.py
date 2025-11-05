@@ -109,13 +109,20 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
 
         base64_str = template.base64_data.split(",")[-1]
         file_data = base64.b64decode(base64_str)
+
         file_extension = template.filename.split(".")[-1].lower()
         if file_extension != "zip":
             raise HTTPException(status_code=400, detail="Only .zip files supported.")
 
         unique_file_name = f"{uuid4()}.{file_extension}"
 
-        # ✅ Schedule upload in background
+        # --- Generate File URL ---
+        file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
+
+        # --- Save File URL Early (for preview) ---
+        await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
+
+        # ✅ Run upload in background (non-blocking)
         background_tasks.add_task(
             upload_to_s3_with_progress,
             file_data,
@@ -125,14 +132,15 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
             job_id
         )
 
-        file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
-        await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
-
-        # ✅ Respond immediately
+        # ✅ Respond immediately — frontend can start polling now
         return {
             "status": True,
             "message": "Template upload started",
-            "data": {"template_id": template_id, "job_id": job_id, "file_url": file_url}
+            "data": {
+                "template_id": template_id,
+                "job_id": job_id,
+                "file_url": file_url
+            }
         }
 
     except HTTPException:

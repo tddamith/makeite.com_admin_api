@@ -1,10 +1,10 @@
 import base64
 import io
 import asyncio
-from uuid import uuid4
-from concurrent.futures import ThreadPoolExecutor
 import boto3
 import os
+from uuid import uuid4
+from concurrent.futures import ThreadPoolExecutor
 
 # AWS Config
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
@@ -85,3 +85,65 @@ async def upload_to_s3_with_progress(file_data, filename, content_type, job_coll
 
     # Run upload in background thread
     await asyncio.to_thread(_upload)
+
+
+
+# import io, zipfile, tempfile, asyncio
+# from boto3 import client
+# from uuid import uuid4
+# import boto3
+# import os
+
+
+# AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+# AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+# AWS_BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
+# AWS_REGION = os.getenv("AWS_REGION")
+
+# s3_client = client(
+#     "s3",
+#     aws_access_key_id=AWS_ACCESS_KEY,
+#     aws_secret_access_key=AWS_SECRET_KEY,
+#     region_name=AWS_REGION
+# )
+
+# async def process_template_file(file_data, filename, content_type, job_collection, job_id):
+#     loop = asyncio.get_running_loop()
+
+#     # --- Stage 1: Upload (0% → 20%) ---
+#     file_size = len(file_data)
+#     bytes_uploaded = 0
+
+#     def upload_callback(bytes_amount):
+#         nonlocal bytes_uploaded
+#         bytes_uploaded += bytes_amount
+#         progress = int((bytes_uploaded / file_size) * 20)  # scale to 0–20%
+#         asyncio.run_coroutine_threadsafe(
+#             job_collection.update_one({"job_id": job_id}, {"$set": {"progress": progress, "status": "uploading"}}),
+#             loop
+#         )
+
+#     def _upload():
+#         s3_client.upload_fileobj(io.BytesIO(file_data), AWS_BUCKET_NAME, filename,
+#             ExtraArgs={"ContentType": content_type}, Callback=upload_callback)
+
+#     await asyncio.to_thread(_upload)
+
+#     await job_collection.update_one({"job_id": job_id}, {"$set": {"progress": 20, "status": "uploaded"}})
+
+#     # --- Stage 2: Extract ZIP (20% → 90%) ---
+#     temp_path = tempfile.mktemp(suffix=".zip")
+#     with open(temp_path, "wb") as f:
+#         f.write(file_data)
+
+#     with zipfile.ZipFile(temp_path, 'r') as zip_ref:
+#         files = zip_ref.infolist()
+#         total = len(files)
+
+#         for i, file in enumerate(files):
+#             zip_ref.extract(file, f"/tmp/templates/{job_id}")  # change path as needed
+#             extract_progress = 20 + int((i / total) * 70)     # 20% → 90%
+#             await job_collection.update_one({"job_id": job_id}, {"$set": {"progress": extract_progress, "status": "extracting"}})
+
+#     # --- Stage 3: Finalizing (90% → 100%) ---
+#     await job_collection.update_one({"job_id": job_id}, {"$set": {"progress": 100, "status": "completed"}})
