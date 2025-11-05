@@ -41,7 +41,7 @@ async def create_sub_category(sub_category: SubCategoryBase):
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
     
 #get sub categories by category_id
-@router.get("/get/sub-categories/{category_id}")
+@router.get("/get/sub-categories/by/{category_id}")
 async def get_sub_categories(category_id: str):
     """Retrieve sub-categories by category ID."""
     try:
