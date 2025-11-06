@@ -1,6 +1,12 @@
 from pydantic import BaseModel
 from typing import Optional,Dict,List
 
+
+class ImageBase(BaseModel):
+    url:str
+    file_name:str
+   
+
 class TemplateBase(BaseModel):
     template_name: str
     # latest_version: Optional[str]
@@ -11,5 +17,5 @@ class TemplateBase(BaseModel):
     type: Optional[str] 
 
 class UpdateTemplateBase(BaseModel):
-    cover_image:str
+    cover_image:ImageBase
     type:str

@@ -116,13 +116,7 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
 
         unique_file_name = f"{uuid4()}.{file_extension}"
 
-        # --- Generate File URL ---
-        file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
-
-        # --- Save File URL Early (for preview) ---
-        await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
-
-        # ✅ Run upload in background (non-blocking)
+         # ✅ Run upload in background (non-blocking)
         background_tasks.add_task(
             upload_to_s3_with_progress,
             file_data,
@@ -131,6 +125,14 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
             job_collection,
             job_id
         )
+
+        # --- Generate File URL ---
+        file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
+
+        # --- Save File URL Early (for preview) ---
+        await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
+
+       
 
         # ✅ Respond immediately — frontend can start polling now
         return {
@@ -161,19 +163,23 @@ async def create_template(template: UpdateTemplateBase,template_id:str):
 
         # Check for duplicate template name
         existing_template = await template_collection.find_one({"template_id": template_id})
-        if existing_template:
-            raise HTTPException(status_code=400, detail="Template already exists.")
-
-        
-             
+        if not existing_template:
+            raise HTTPException(status_code=400, detail="Not Found Template.")
+            
+         # ✅ Convert Pydantic model to dict
+        cover_image_data = template.cover_image.dict()
 
         # Insert records
         await template_collection.update_one(
             {"template_id": template_id},
-            {"$set": { "cover_image":template.cover_image,
-            "type":template.type,
-            "status": "draft",
-            "updated_at": datetime.utcnow()}}
+            {
+                "$set": {
+                    "cover_image": cover_image_data,
+                    "type": template.type,
+                    "status": "draft",
+                    "updated_at": datetime.utcnow(),
+                }
+            },
         )
 
         return {
