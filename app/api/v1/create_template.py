@@ -166,7 +166,7 @@ async def create_template(template: UpdateTemplateBase,template_id:str):
         if not existing_template:
             raise HTTPException(status_code=400, detail="Not Found Template.")
             
-         # ✅ Convert Pydantic model to dict
+         
         cover_image_data = template.cover_image.dict()
 
         # Insert records
