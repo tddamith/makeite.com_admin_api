@@ -1,10 +1,11 @@
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from datetime import datetime
+import asyncio
 from bson import ObjectId
 from app.db.database import mongo
-from app.api.v1.schemas.template_schema import TemplateBase,UpdateTemplateBase
-from app.utils.file_uploader import s3_client
-from app.utils.file_uploader import S3Progress, executor
+from app.api.v1.schemas.template_schema import TemplateBase
+# from app.utils.file_uploader import s3_client
+# from app.utils.file_uploader import S3Progress, executor
 from app.utils.file_uploader import upload_to_s3_with_progress
 import base64
 import io
@@ -38,11 +39,15 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
         template_id = str(ObjectId())
         job_id = str(ObjectId())
 
+        cover_image_data = template.cover_image.dict()
+
         template_data = {
             "template_id": template_id,
             "template_name": template.template_name,
             "category_id":template.category_id,
             "sub_category_id":template.sub_category_id,
+            "cover_image":cover_image_data,
+            "type":template.type,
             "latest_version": 0,
             "status": "draft",
             "created_at": datetime.utcnow(),
@@ -116,14 +121,17 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
 
         unique_file_name = f"{uuid4()}.{file_extension}"
 
-         # ✅ Run upload in background (non-blocking)
+         #  Run upload in background (non-blocking)
         background_tasks.add_task(
-            upload_to_s3_with_progress,
-            file_data,
-            unique_file_name,
-            template.type,
-            job_collection,
-            job_id
+           asyncio.create_task(
+                upload_to_s3_with_progress(
+                file_data,
+                unique_file_name,
+                "application/zip",
+                job_collection,
+                job_id,
+        )
+    )
         )
 
         # --- Generate File URL ---
@@ -134,7 +142,7 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
 
        
 
-        # ✅ Respond immediately — frontend can start polling now
+        # Respond immediately — frontend can start polling now
         return {
             "status": True,
             "message": "Template upload started",
@@ -154,46 +162,46 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
     
     
 
-@router.put("/update/template/by/{template_id}")
-async def create_template(template: UpdateTemplateBase,template_id:str):
-    """Create a new template (ZIP-based)."""
-    try:
-        template_collection = await mongo.get_collection("templates")
+# @router.put("/update/template/by/{template_id}")
+# async def create_template(template: UpdateTemplateBase,template_id:str):
+#     """Create a new template (ZIP-based)."""
+#     try:
+#         template_collection = await mongo.get_collection("templates")
         
 
-        # Check for duplicate template name
-        existing_template = await template_collection.find_one({"template_id": template_id})
-        if not existing_template:
-            raise HTTPException(status_code=400, detail="Not Found Template.")
+#         # Check for duplicate template name
+#         existing_template = await template_collection.find_one({"template_id": template_id})
+#         if not existing_template:
+#             raise HTTPException(status_code=400, detail="Not Found Template.")
             
          
-        cover_image_data = template.cover_image.dict()
+#         cover_image_data = template.cover_image.dict()
 
-        # Insert records
-        await template_collection.update_one(
-            {"template_id": template_id},
-            {
-                "$set": {
-                    "cover_image": cover_image_data,
-                    "type": template.type,
-                    "status": "draft",
-                    "updated_at": datetime.utcnow(),
-                }
-            },
-        )
+#         # Insert records
+#         await template_collection.update_one(
+#             {"template_id": template_id},
+#             {
+#                 "$set": {
+#                     "cover_image": cover_image_data,
+#                     "type": template.type,
+#                     "status": "draft",
+#                     "updated_at": datetime.utcnow(),
+#                 }
+#             },
+#         )
 
-        return {
-            "status": True,
-            "message": "Template update successfully",
-            "data": {
-                "template_id": template_id,                
-            }
-        }
+#         return {
+#             "status": True,
+#             "message": "Template update successfully",
+#             "data": {
+#                 "template_id": template_id,                
+#             }
+#         }
 
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+#     except HTTPException:
+#         raise
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 
 

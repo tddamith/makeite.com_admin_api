@@ -23,68 +23,118 @@ s3_client = boto3.client(
 # Thread executor for uploads
 executor = ThreadPoolExecutor()
 
+upload_progress = {}
 
-# --- Progress Tracker ---
-class S3Progress:
-    def __init__(self, filesize, job_collection, job_id):
-        self._filesize = filesize
-        self._seen_so_far = 0
-        self.job_collection = job_collection
-        self.job_id = job_id
-
-    def __call__(self, bytes_amount):
-        self._seen_so_far += bytes_amount
-        progress = int((self._seen_so_far / self._filesize) * 100)
-
-        # Schedule progress update in the main loop safely
-        try:
-            loop = asyncio.get_event_loop()
-        except RuntimeError:
-            # Get running loop from FastAPI app (if called from a thread)
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-
-        asyncio.run_coroutine_threadsafe(
-            self.job_collection.update_one(
-                {"job_id": self.job_id},
-                {"$set": {"progress": progress}},
-            ),
-            loop,
-        )
-
-
-# --- Async Upload Function ---
 async def upload_to_s3_with_progress(file_data, filename, content_type, job_collection, job_id):
     file_size = len(file_data)
-    progress_callback = S3Progress(file_size, job_collection, job_id)
+    upload_progress[job_id] = 0
 
-    def _upload():
-        try:
+    async def simulate_progress():
+        while upload_progress[job_id] < 95:
+            await asyncio.sleep(0.5)
+            upload_progress[job_id] += 5
+            await job_collection.update_one(
+                {"job_id": job_id},
+                {"$set": {"progress": upload_progress[job_id]}},
+            )
+
+    async def do_upload():
+        def _upload():
             s3_client.upload_fileobj(
                 io.BytesIO(file_data),
                 AWS_BUCKET_NAME,
                 filename,
                 ExtraArgs={"ContentType": content_type},
-                Callback=progress_callback,
             )
-            # Mark job complete
-            asyncio.run(
-                job_collection.update_one(
-                    {"job_id": job_id},
-                    {"$set": {"progress": 100, "status": "completed"}},
-                )
-            )
-        except Exception as e:
-            # Mark job failed
-            asyncio.run(
-                job_collection.update_one(
-                    {"job_id": job_id},
-                    {"$set": {"status": "failed", "error": str(e)}},
-                )
-            )
+        await asyncio.to_thread(_upload)
 
-    # Run upload in background thread
-    await asyncio.to_thread(_upload)
+    # Run both tasks together
+    simulate_task = asyncio.create_task(simulate_progress())
+
+    try:
+        await do_upload()
+        upload_progress[job_id] = 100
+        await job_collection.update_one(
+            {"job_id": job_id},
+            {"$set": {"progress": 100, "status": "completed"}},
+        )
+    except Exception as e:
+        await job_collection.update_one(
+            {"job_id": job_id},
+            {"$set": {"status": "failed", "error": str(e)}},
+        )
+    finally:
+        simulate_task.cancel()
+
+
+
+
+
+
+
+# ======================================================================================
+
+# --- Progress Tracker ---
+# class S3Progress:
+#     def __init__(self, filesize, job_collection, job_id):
+#         self._filesize = filesize
+#         self._seen_so_far = 0
+#         self.job_collection = job_collection
+#         self.job_id = job_id
+
+#     def __call__(self, bytes_amount):
+#         self._seen_so_far += bytes_amount
+#         progress = int((self._seen_so_far / self._filesize) * 100)
+
+#         # Schedule progress update in the main loop safely
+#         try:
+#             loop = asyncio.get_event_loop()
+#         except RuntimeError:
+#             # Get running loop from FastAPI app (if called from a thread)
+#             loop = asyncio.new_event_loop()
+#             asyncio.set_event_loop(loop)
+
+#         asyncio.run_coroutine_threadsafe(
+#             self.job_collection.update_one(
+#                 {"job_id": self.job_id},
+#                 {"$set": {"progress": progress}},
+#             ),
+#             loop,
+#         )
+
+
+# # --- Async Upload Function ---
+# async def upload_to_s3_with_progress(file_data, filename, content_type, job_collection, job_id):
+#     file_size = len(file_data)
+#     progress_callback = S3Progress(file_size, job_collection, job_id)
+
+#     def _upload():
+#         try:
+#             s3_client.upload_fileobj(
+#                 io.BytesIO(file_data),
+#                 AWS_BUCKET_NAME,
+#                 filename,
+#                 ExtraArgs={"ContentType": content_type},
+#                 Callback=progress_callback,
+#             )
+#             # Mark job complete
+#             asyncio.run(
+#                 job_collection.update_one(
+#                     {"job_id": job_id},
+#                     {"$set": {"progress": 100, "status": "completed"}},
+#                 )
+#             )
+#         except Exception as e:
+#             # Mark job failed
+#             asyncio.run(
+#                 job_collection.update_one(
+#                     {"job_id": job_id},
+#                     {"$set": {"status": "failed", "error": str(e)}},
+#                 )
+#             )
+
+#     # Run upload in background thread
+#     await asyncio.to_thread(_upload)
 
 
 

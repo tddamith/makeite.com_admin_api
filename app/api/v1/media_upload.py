@@ -78,9 +78,10 @@ async def upload_image(
 #=====================================================================================================
 @router.delete("/delete/image/{file_name}", response_model=dict)
 async def delete_image(
-    request: Request,
+    # request: Request,
     file_name: str,
-    user: dict = Depends(validate_signature)):
+    # user: dict = Depends(validate_signature)
+    ):
 
     params = {
         "Bucket": AWS_BUCKET_NAME,
