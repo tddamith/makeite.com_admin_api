@@ -223,19 +223,102 @@ async def delete_job(job_id: str):
 
 
 #get all template
+# @router.get("/get/all/templates")
+# async def get_templates():
+#     """Retrieve all Templates."""
+#     try:
+#         templates_collection = await mongo.get_collection("templates")
+        
+#         templates_cursor = templates_collection.find({})
+#         templates = []
+#         async for template in templates_cursor:
+#             template["_id"] = str(template["_id"])  # Convert ObjectId to string
+#             templates.append(template)
+        
+#         return {"templates": templates}
+       
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
+    
+
+# get all templates
 @router.get("/get/all/templates")
 async def get_templates():
-    """Retrieve all Templates."""
+    """Retrieve all templates with category and sub-category names."""
     try:
         templates_collection = await mongo.get_collection("templates")
-        
-        templates_cursor = templates_collection.find({})
+
+        # Define aggregation pipeline
+        pipeline = [
+            {
+                "$lookup": {
+                    "from": "categories",
+                    "let": {"category_id": "$category_id"},
+                    "pipeline": [
+                        {
+                            "$match": {
+                                "$expr": {"$eq": ["$category_id", "$$category_id"]}
+                            }
+                        },
+                        {
+                            "$project": {
+                                "_id": 0,
+                                "category_id": 1,
+                                "category_name": 1,
+                                "icon_name": 1
+                            }
+                        },
+                    ],
+                    "as": "category_info"
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "sub_categories",
+                    "let": {"sub_category_id": "$sub_category_id"},
+                    "pipeline": [
+                        {
+                            "$match": {
+                                "$expr": {"$eq": ["$sub_category_id", "$$sub_category_id"]}
+                            }
+                        },
+                        {
+                            "$project": {
+                                "_id": 0,
+                                "sub_category_id": 1,
+                                "sub_category_name": 1
+                            }
+                        },
+                    ],
+                    "as": "sub_category_info"
+                }
+            },
+            {
+                "$addFields": {
+                    "category_name": {
+                        "$arrayElemAt": ["$category_info.category_name", 0]
+                    },
+                    "sub_category_name": {
+                        "$arrayElemAt": ["$sub_category_info.sub_category_name", 0]
+                    }
+                }
+            },
+            {
+                "$project": {
+                    "category_info": 0,
+                    "sub_category_info": 0
+                }
+            }
+        ]
+
+        # Run aggregation
+        templates_cursor = templates_collection.aggregate(pipeline)
         templates = []
         async for template in templates_cursor:
             template["_id"] = str(template["_id"])  # Convert ObjectId to string
             templates.append(template)
-        
+
         return {"templates": templates}
-    
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")

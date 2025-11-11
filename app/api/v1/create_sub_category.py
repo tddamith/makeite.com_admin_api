@@ -148,3 +148,26 @@ async def delete_sub_category_item(sub_category_id: str, item_id: str):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
+
+#Get Sub_category by SubCategory Id
+@router.get("/get/sub-categories/{sub_category_id}")
+async def get_sub_category_by_id(sub_category_id: str):
+    """Retrieve a sub-category (or list) by its sub_category_id."""
+    try:
+        sub_category_collection = await mongo.get_collection("sub_categories")
+
+        # Query by sub_category_id
+        cursor = sub_category_collection.find({"sub_category_id": sub_category_id})
+        results = []
+        async for sub_category in cursor:
+            sub_category["_id"] = str(sub_category["_id"])
+            results.append(sub_category)
+
+        # Handle empty results gracefully
+        if not results:
+            raise HTTPException(status_code=404, detail="Sub-category not found")
+
+        return {"sub_categories": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
