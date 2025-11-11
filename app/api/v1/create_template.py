@@ -203,15 +203,6 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
-
-
-
-
-
-
-
-
-
 # Remove Job when completed progress
 @router.delete("/delete/job/{job_id}")
 async def delete_job(job_id: str):
@@ -229,3 +220,22 @@ async def delete_job(job_id: str):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}") 
+
+
+#get all template
+@router.get("/get/all/templates")
+async def get_templates():
+    """Retrieve all Templates."""
+    try:
+        templates_collection = await mongo.get_collection("templates")
+        
+        templates_cursor = templates_collection.find({})
+        templates = []
+        async for template in templates_cursor:
+            template["_id"] = str(template["_id"])  # Convert ObjectId to string
+            templates.append(template)
+        
+        return {"templates": templates}
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
