@@ -18,5 +18,13 @@ class TemplateBase(BaseModel):
     type: Optional[str]
     
     
-
+class TemplateUpdateBase(BaseModel):
+    template_name: str
+    # latest_version: Optional[str]
+    category_id: str
+    sub_category_id:str
+    base64_data: str
+    filename: str
+    cover_image:ImageBase
+    type: Optional[str]
     
