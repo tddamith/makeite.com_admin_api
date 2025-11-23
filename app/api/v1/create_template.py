@@ -8,6 +8,7 @@ from app.api.v1.schemas.template_schema import TemplateBase
 # from app.utils.file_uploader import S3Progress, executor
 from app.utils.file_uploader import upload_to_s3_with_progress
 import base64
+import re
 import io
 from uuid import uuid4
 import boto3
@@ -115,13 +116,36 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
         base64_str = template.base64_data.split(",")[-1]
         file_data = base64.b64decode(base64_str)
 
-        file_extension = template.filename.split(".")[-1].lower()
+        # file_extension = template.filename.split(".")[-1].lower()
+        # file_name = template.filename.replace("")[-1].lower()
+        # if file_extension != "zip":
+        #     raise HTTPException(status_code=400, detail="Only .zip files supported.")
+        # unique_file_name = f"{uuid4()}.{file_extension}"
+
+
+        raw_filename = template.filename
+
+        # extract extension safely
+        file_extension = raw_filename.split(".")[-1].lower()
         if file_extension != "zip":
             raise HTTPException(status_code=400, detail="Only .zip files supported.")
 
-        unique_file_name = f"{uuid4()}.{file_extension}"
+        # --- sanitize the name ---
+        # lowercase
+        name_only = raw_filename.rsplit(".", 1)[0].lower()
 
-         #  Run upload in background (non-blocking)
+        # remove unsafe characters (keep a-z, 0-9, dash, underscore)
+        safe_name = re.sub(r"[^a-z0-9-_]+", "-", name_only)
+
+        # avoid empty name edge-case
+        if not safe_name.strip("-"):
+            safe_name = "template"
+
+        # final sanitized filename (optionally prepend UUID)
+        unique_file_name = f"{uuid4()}_{safe_name}.{file_extension}"
+
+
+        #  Run upload in background (non-blocking)
         background_tasks.add_task(
            asyncio.create_task(
                 upload_to_s3_with_progress(
@@ -137,12 +161,10 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
         # --- Generate File URL ---
         file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
 
-        # --- Save File URL Early (for preview) ---
+       
         await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
 
        
-
-        # Respond immediately — frontend can start polling now
         return {
             "status": True,
             "message": "Template upload started",

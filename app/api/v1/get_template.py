@@ -116,7 +116,7 @@ async def get_templates_status():
                 "type": 0,
                 "latest_version": 0,
                 "created_at": 0,
-                # keep status by NOT excluding it
+               
             }
         )
 

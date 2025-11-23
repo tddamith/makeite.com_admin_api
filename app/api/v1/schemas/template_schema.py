@@ -23,8 +23,8 @@ class TemplateUpdateBase(BaseModel):
     # latest_version: Optional[str]
     category_id: str
     sub_category_id:str
-    base64_data: str
-    filename: str
+    base64_data: Optional[str]
+    filename: Optional[str]
     cover_image:ImageBase
     type: Optional[str]
     
