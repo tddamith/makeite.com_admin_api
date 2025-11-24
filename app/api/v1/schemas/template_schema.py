@@ -25,6 +25,6 @@ class TemplateUpdateBase(BaseModel):
     sub_category_id:str
     base64_data: Optional[str]
     filename: Optional[str]
-    cover_image:ImageBase
+    cover_image:Optional[ImageBase]
     type: Optional[str]
     
