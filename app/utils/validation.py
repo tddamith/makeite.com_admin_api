@@ -1,7 +1,6 @@
-
+import bcrypt
 import datetime
 import random
-import bcrypt
 from fastapi import Request, HTTPException
 from jose import jwt, ExpiredSignatureError, JWTError
 import os
@@ -74,16 +73,16 @@ async def validate_signature(request: Request):
 def decode_token(token: str):
     try:
         if not token:
-            print("User details not found....")
+            #print("User details not found....")
             return False
 
         decoded_token = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
         return decoded_token
 
     except ExpiredSignatureError:
-        print("Token has expired.")
+        #print("Token has expired.")
         raise HTTPException(status_code=401, detail="Token has expired")
 
     except JWTError as e:
-        print(f"Invalid token: {str(e)}")
+        #print(f"Invalid token: {str(e)}")
         raise HTTPException(status_code=401, detail="Invalid token")
