@@ -24,8 +24,16 @@ async def validate_password(saved_password: str, entered_password: str, salt: st
     return hashed_entered_password == saved_password
 
 
+async def refresh_signature(payload: dict) -> str:
+    expiration_time = datetime.datetime.utcnow() + datetime.timedelta(days=30)
+    payload["exp"] = expiration_time
+    token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
+    return token
+
+
+
 async def generate_signature(payload: dict) -> str:
-    expiration_time = datetime.datetime.utcnow() + datetime.timedelta(days=1)
+    expiration_time = datetime.datetime.utcnow() + datetime.timedelta(days=7)
     payload["exp"] = expiration_time
     token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
     return token
