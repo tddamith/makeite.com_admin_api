@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "templateId": "vicky-damaris-wedding-v1",
+    "version": 1
+  },
+
+  "page": {
+    "title": "Vicky & Damaris — Wedding Invitation"
+  },
+
+  "theme": {
+    "vars": {
+      "bg": "#e8e8e8",
+      "card": "#3f2b40",
+      "ink": "#ffffff",
+      "muted": "rgba(255,255,255,0.7)",
+      "primary": "#ffffff",
+      "radius": "12px"
+    },
+    "fonts": [
+      "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+    ]
+  },
+
+  "card": {
+    "size": {
+      "width": 480,
+      "height": 720
+    },
+    "dpi": 300,
+    "safePadding": 40,
+    "bleed": 0,
+    "backgroundColor": "#3f2b40",
+    "transparentBackground": false,
+    "export": {
+      "scale": 2,
+      "filename": "vicky-damaris-wedding-invitation.png"
+    },
+    "preview": {
+      "fit": true,
+      "zoom": 1
+    }
+  },
+
+  "assets": {
+    "images": {
+      "topFlowers": "https://i.imgur.com/Jpa9G0U.png",
+      "bottomFlowers": "https://i.imgur.com/Kf4Jp6H.png"
+    }
+  },
+
+  "content": {
+    "introText": "Together with their families",
+    "names": ["Vicky", "Damaris"],
+    "inviteText": "Invite you to celebrate their marriage",
+    "event": {
+      "day": "Sunday",
+      "date": "18",
+      "month": "October",
+      "year": "2025",
+      "time": "01:00 PM"
+    }
+  },
+
+  "layout": {
+    "dateBox": {
+      "left": "SUNDAY\n01:00 PM",
+      "center": "18",
+      "right": "OCTOBER\n2025"
+    }
+  },
+
+  "editable": {
+    "enabled": true,
+    "selectors": [".names", ".small-text", ".details-box"],
+    "storage": "localStorage"
+  },
+
+  "animations": [
+    {
+      "selector": ".invitation-card",
+      "class": "animate-fade-in",
+      "delayMs": 100
+    },
+    {
+      "selector": ".names",
+      "class": "animate-fade-in-up",
+      "delayMs": 200
+    }
+  ],
+
+  "styles": {
+    "names": {
+      "fontFamily": "Great Vibes",
+      "fontSize": "48px",
+      "color": "#ffffff"
+    },
+    "small_text": {
+      "fontSize": "14px",
+      "letterSpacing": "1px",
+      "color": "rgba(255,255,255,0.8)"
+    },
+    "date_box": {
+      "background": "rgba(255,255,255,0.1)",
+      "borderRadius": "10px"
+    }
+  }
+}

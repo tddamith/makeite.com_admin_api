@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "templateId": "floral-wedding-card-v1",
+    "version": 1
+  },
+
+  "page": {
+    "title": "Harper Russo & Margarita Perez — Wedding Invitation"
+  },
+
+  "theme": {
+    "vars": {
+      "bg": "#f9f7f4",
+      "card": "#ffffff",
+      "ink": "#333333",
+      "muted": "#8d7c56",
+      "primary": "#b08c50",
+      "radius": "6px"
+    },
+    "fonts": [
+      "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap"
+    ]
+  },
+
+  "card": {
+    "size": {
+      "width": 650,
+      "height": 850
+    },
+    "dpi": 300,
+    "safePadding": 50,
+    "bleed": 0,
+    "backgroundColor": "#ffffff",
+    "transparentBackground": false,
+    "export": {
+      "scale": 2,
+      "filename": "harper-margarita-wedding-invite.png"
+    },
+    "preview": {
+      "fit": true,
+      "zoom": 1
+    }
+  },
+
+  "assets": {
+    "images": {
+      "topFloral": "/mnt/data/fbd9a6de-ce34-4862-8ef1-7a9977714472.jpg",
+      "bottomFloral": "/mnt/data/fbd9a6de-ce34-4862-8ef1-7a9977714472.jpg"
+    }
+  },
+
+  "content": {
+    "inviteText": "PLEASE JOIN US IN THE CELEBRATION OF OUR WEDDING",
+    "names": ["Harper Russo", "Margarita Perez"],
+    "details": {
+      "label": "Save The Date",
+      "date": "Sun, 10 July 2025",
+      "time": "At 11:00 AM",
+      "venue": "123 Anywhere St, Any City, ST 19215"
+    }
+  },
+
+  "editable": {
+    "enabled": true,
+    "selectors": [".invite-text", ".names", ".details"],
+    "storage": "localStorage"
+  },
+
+  "backgrounds": [
+    {
+      "selector": ".card",
+      "color": "#ffffff"
+    }
+  ],
+
+  "animations": [
+    {
+      "selector": ".card",
+      "class": "animate-fade-in",
+      "delayMs": 100
+    },
+    {
+      "selector": ".names",
+      "class": "animate-fade-in-up",
+      "delayMs": 200
+    }
+  ],
+
+  "styles": {
+    "invite_text": {
+      "fontSize": "14px",
+      "letterSpacing": "1px",
+      "color": "#8d7c56"
+    },
+    "names": {
+      "fontSize": "55px",
+      "fontFamily": "Great Vibes",
+      "color": "#b08c50"
+    },
+    "details": {
+      "fontSize": "16px",
+      "lineHeight": "28px"
+    }
+  }
+}

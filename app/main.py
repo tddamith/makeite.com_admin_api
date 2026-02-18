@@ -1,5 +1,6 @@
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from app.api.v1.create_category import router as category_router
 from app.api.v1.create_sub_category import router as sub_category_router
 from app.api.v1.create_template import router as template_router
@@ -33,6 +34,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount(
+    "/TemplateCards",
+    StaticFiles(directory="TemplateCards"),
+    name="TemplateCards"
+)
 
 @app.on_event("startup")
 async def startup_db():

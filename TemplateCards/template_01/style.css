@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f9f7f4;
+  font-family: "Playfair Display", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 650px;
+  height: 850px;
+  background: #ffffff;
+  padding: 60px 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floral Background Decorations */
+.top-floral,
+.bottom-floral {
+  position: absolute;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.top-floral {
+  top: 0;
+  right: 0;
+  width: 260px;
+}
+
+.bottom-floral {
+  bottom: 0;
+  left: 0;
+  width: 260px;
+}
+
+/* Title Styling */
+.invite-text {
+  text-align: center;
+  letter-spacing: 1px;
+  color: #8d7c56;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.names {
+  text-align: center;
+  font-family: "Great Vibes", cursive;
+  font-size: 55px;
+  color: #b08c50;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.and {
+  text-align: center;
+  font-size: 26px;
+  margin: 4px 0;
+  color: #b08c50;
+}
+
+/* Event Details */
+.details {
+  margin-top: 35px;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+/* Editable hover */
+.editable {
+  cursor: text;
+  border-bottom: 1px dashed transparent;
+  transition: 0.2s;
+}
+.editable:hover {
+  border-color: #d1b98c;
+}

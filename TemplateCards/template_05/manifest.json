@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "templateId": "elegance-banquet-v1",
+    "version": 1
+  },
+
+  "theme": {
+    "vars": {
+      "bg": "#e7dfd3",
+      "card": "#ffffff",
+      "ink": "#415067",
+      "muted": "#505050",
+      "primary": "#415067",
+      "radius": "8px"
+    },
+    "fonts": [
+      "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+    ]
+  },
+
+  "page": {
+    "title": "Elegance Banquet Invitation"
+  },
+
+  "hero": {
+    "title": "Elegance Banquet",
+    "subtitle": "You’re invited to a night of elegance and celebration",
+    "background": "https://i.imgur.com/oe1n7mR.png"
+  },
+
+  "event": {
+    "date": "July 12, 2028",
+    "time": "7 PM Onwards",
+    "venue": "Local Church, 108 N Platinum Ave, Deming, NM 88030"
+  },
+
+  "details": {
+    "heading": "Event Details",
+    "body": "The ambiance will be one of sophistication and grandeur, as we come together to savor the joys of life and toast to shared accomplishments."
+  },
+
+  "cta": {
+    "label": "RSVP",
+    "href": "tel:7252302997"
+  },
+
+  "footer": {
+    "note": "Please RSVP by July 10, 2029 to secure your place at this extraordinary event."
+  },
+
+  "backgrounds": [
+    {
+      "selector": ".invitation-wrapper",
+      "image": "https://i.imgur.com/oe1n7mR.png",
+      "size": "contain",
+      "position": "top left"
+    },
+    {
+      "selector": ".invitation-wrapper",
+      "image": "https://i.imgur.com/RLpZq67.png",
+      "size": "contain",
+      "position": "bottom right"
+    }
+  ],
+
+  "styles": {
+    "hero_title": {
+      "fontFamily": "Great Vibes",
+      "fontSize": "58px",
+      "color": "#415067"
+    },
+    "hero_subtitle": {
+      "fontSize": "12px",
+      "letterSpacing": "1px",
+      "color": "#4b4b4b"
+    },
+    "body_text": {
+      "fontSize": "13px",
+      "lineHeight": "1.6",
+      "color": "#505050"
+    }
+  },
+
+  "card": {
+    "size": {
+      "width": 500,
+      "height": 800
+    },
+    "dpi": 300,
+    "safePadding": 40,
+    "bleed": 0,
+    "backgroundColor": "#ffffff",
+    "transparentBackground": false,
+    "export": {
+      "scale": 2,
+      "filename": "elegance-banquet-invitation.png"
+    },
+    "preview": {
+      "fit": true,
+      "zoom": 1
+    }
+  },
+
+  "intro": {
+    "enabled": true,
+    "useOnce": true,
+    "timing": {
+      "fade": 500,
+      "holdAfter": 300
+    }
+  }
+}

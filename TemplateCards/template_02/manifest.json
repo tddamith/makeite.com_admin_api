@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "templateId": "25th-anniversary-card-v1",
+    "version": 1
+  },
+
+  "page": {
+    "title": "Michelle & Daniel Walker — 25th Anniversary Invitation"
+  },
+
+  "theme": {
+    "vars": {
+      "bg": "#073a32",
+      "card": "#073a32",
+      "ink": "#ffffff",
+      "muted": "rgba(255,255,255,0.7)",
+      "primary": "#e8c76a",
+      "radius": "8px"
+    },
+    "fonts": [
+      "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;500;700&display=swap"
+    ]
+  },
+
+  "card": {
+    "size": {
+      "width": 720,
+      "height": 850
+    },
+    "dpi": 300,
+    "safePadding": 48,
+    "bleed": 0,
+    "backgroundColor": "#073a32",
+    "transparentBackground": false,
+    "export": {
+      "scale": 2,
+      "filename": "michelle-daniel-25th-anniversary.png"
+    },
+    "preview": {
+      "fit": true,
+      "zoom": 1
+    }
+  },
+
+  "assets": {
+    "images": {
+      "texture": "/mnt/data/1090c8fc-64b7-4535-a114-6c0abb64bd7e.png"
+    }
+  },
+
+  "content": {
+    "headline": "25th Anniversary",
+    "names": ["Michelle", "Daniel Walker"],
+    "description": "Join us for an opulent night honoring 25 years of love and commitment.",
+    "details": {
+      "date": "Thursday, September 24",
+      "time": "At 8:00 PM",
+      "venue": "500 Luxe Lane, Los Angeles"
+    },
+    "rsvp": {
+      "label": "RSVP BY",
+      "date": "17 September",
+      "email": "walkers25@invitation.com"
+    }
+  },
+
+  "editable": {
+    "enabled": true,
+    "selectors": [
+      ".couple-names",
+      ".big-title",
+      ".date-info",
+      ".desc",
+      ".rsvp"
+    ],
+    "storage": "localStorage"
+  },
+
+  "backgrounds": [
+    {
+      "selector": ".invitation",
+      "color": "#073a32"
+    }
+  ],
+
+  "animations": [
+    {
+      "selector": ".invitation",
+      "class": "animate-fade-in",
+      "delayMs": 100
+    },
+    {
+      "selector": ".couple-names",
+      "class": "animate-fade-in-up",
+      "delayMs": 200
+    },
+    {
+      "selector": ".date-row",
+      "class": "animate-fade-in-up",
+      "delayMs": 300
+    }
+  ],
+
+  "styles": {
+    "headline": {
+      "fontSize": "44px",
+      "fontFamily": "Playfair Display",
+      "letterSpacing": "2px",
+      "color": "#ffffff"
+    },
+    "names": {
+      "fontSize": "56px",
+      "fontFamily": "Great Vibes",
+      "color": "#e8c76a"
+    },
+    "details": {
+      "fontSize": "16px",
+      "lineHeight": "26px",
+      "letterSpacing": "1px"
+    },
+    "description": {
+      "fontSize": "18px",
+      "fontStyle": "italic",
+      "color": "rgba(255,255,255,0.9)"
+    }
+  }
+}

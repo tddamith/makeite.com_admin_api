@@ -1,0 +1,57 @@
+body {
+  background: #e8e8e8;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.invitation-card {
+  width: 480px;
+  background: #3f2b40; /* dark plum color */
+  color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.top-flowers img,
+.bottom-flowers img {
+  width: 100%;
+}
+
+.names {
+  font-family: "Great Vibes", cursive;
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+.small-text {
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 20px 0;
+}
+
+.details-box {
+  margin: 25px auto;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.details-box div {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.details-box .center {
+  font-size: 40px;
+  font-weight: bold;
+}

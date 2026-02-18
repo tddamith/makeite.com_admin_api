@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f7e9e2;
+  font-family: "Playfair Display", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.invitation-card {
+  width: 420px;
+  background: #fff9f5;
+  padding: 40px 30px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  overflow: hidden;
+}
+
+.flowers {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  pointer-events: none;
+}
+
+.flowers.top {
+  top: -10px;
+}
+
+.flowers.bottom {
+  bottom: -10px;
+}
+
+.small-text {
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  color: #7a5a4a;
+}
+
+.names {
+  font-family: "Great Vibes", cursive;
+  font-size: 55px;
+  color: #8b4e46;
+  line-height: 1.2;
+  margin: 10px 0;
+}
+
+.names span {
+  font-size: 40px;
+}
+
+.invite-text {
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: 15px 0;
+  color: #7a5a4a;
+}
+
+.date-box {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+  border: 1px solid #c9b1a6;
+  padding: 10px 0;
+}
+
+.col {
+  flex: 1;
+  text-align: center;
+}
+
+.label {
+  font-weight: 600;
+  color: #8b4e46;
+  font-size: 18px;
+}
+
+.center {
+  border-left: 1px solid #c9b1a6;
+  border-right: 1px solid #c9b1a6;
+}
+
+.day {
+  font-size: 18px;
+  color: #7a5a4a;
+}
+
+.date {
+  font-size: 30px;
+  font-weight: 600;
+  color: #8b4e46;
+  margin-top: 5px;
+}
+
+.details {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #6b5246;
+  margin-top: 15px;
+}
+
+.footer-script {
+  font-family: "Great Vibes", cursive;
+  font-size: 24px;
+  margin-top: 20px;
+  color: #8b4e46;
+}

@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  background: #1e1e1e;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.invite-card {
+  width: 420px;
+  background: linear-gradient(#fff9e6, #fdf5d9);
+  padding: 40px 0 0;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= TEXT ================= */
+
+.title {
+  color: #4aba3f;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #c39a41;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.small-msg {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.month {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.big-date {
+  font-size: 55px;
+  font-weight: 700;
+  margin: -15px 0;
+}
+
+.time {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.location {
+  margin: 18px 0;
+  font-size: 15px;
+}
+
+/* ================= SCENE ================= */
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-top: 45px;
+}
+
+.grass {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.duck {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 195px;
+}
+
+/* ================= CLOUDS ================= */
+
+.cloud {
+  position: absolute;
+  width: 149px;
+  opacity: 0.9;
+}
+
+.cloud-left {
+  bottom: 49px;
+  left: 0;
+}
+
+.cloud-right {
+  bottom: 45px;
+  right: -6px;
+}
+
+/* ================= HEARTS ================= */
+
+.heart {
+  position: absolute;
+  width: 90px;
+  opacity: 0.8;
+}
+
+.heart-left-top {
+  top: 20px;
+  left: 10px;
+}
+
+.heart-left-mid {
+  top: 180px;
+  left: 10px;
+}
+
+.heart-left-bottom {
+  bottom: 250px;
+  left: 15px;
+}
+
+.heart-right-top {
+  top: 30px;
+  right: 0;
+}
+
+.heart-right-mid {
+  top: 180px;
+  right: 20px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer-msg {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  /* margin-top: 20px; */
+  color: #777;
+}

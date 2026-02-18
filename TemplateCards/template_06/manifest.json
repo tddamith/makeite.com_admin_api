@@ -1,0 +1,178 @@
+{
+  "templateId": "template_06_chick_birthday",
+  "name": "Chick Birthday Invitation",
+  "category": "birthday",
+  "version": "2.1.0",
+  "author": "Your Brand Name",
+  "thumbnail": "thumbnail.png",
+
+  "canvas": {
+    "width": 420,
+    "height": 720
+  },
+
+  "layout": {
+    "containerSelector": ".invite-card",
+    "locked": true
+  },
+
+  "editable": {
+    "text": [
+      {
+        "id": "title",
+        "label": "Main Title",
+        "selector": ".title",
+        "type": "heading",
+        "default": "ONEderful News!",
+        "maxLength": 40,
+        "styleEditable": ["color", "fontSize"]
+      },
+      {
+        "id": "subtitle",
+        "label": "Subtitle",
+        "selector": ".subtitle",
+        "type": "textarea",
+        "default": "Our little chick, Rehaya is turning one!",
+        "multiline": true,
+        "maxLength": 120,
+        "styleEditable": ["color"]
+      },
+      {
+        "id": "small_msg",
+        "label": "Intro Message",
+        "selector": ".small-msg",
+        "type": "text",
+        "default": "Join us for a joyful celebration"
+      },
+      {
+        "id": "month",
+        "label": "Month",
+        "selector": ".month",
+        "type": "text",
+        "default": "October"
+      },
+      {
+        "id": "date",
+        "label": "Date",
+        "selector": ".big-date",
+        "type": "text",
+        "default": "5th"
+      },
+      {
+        "id": "time",
+        "label": "Time",
+        "selector": ".time",
+        "type": "text",
+        "default": "4.00 PM - 5.30 PM"
+      },
+      {
+        "id": "location",
+        "label": "Location",
+        "selector": ".location",
+        "type": "textarea",
+        "default": "Rehaya’s Chick Inn (Home)",
+        "multiline": true
+      },
+      {
+        "id": "footer",
+        "label": "Footer Message",
+        "selector": ".footer-msg",
+        "type": "text",
+        "default": "Your presence will make the day egg-stra special"
+      }
+    ],
+
+    "images": [
+      {
+        "id": "duck",
+        "label": "Main Character",
+        "selector": ".duck",
+        "replaceable": true,
+        "allowedFormats": ["png", "jpg", "webp"]
+      },
+      {
+        "id": "cloud_left",
+        "selector": ".cloud-left",
+        "locked": true
+      },
+      {
+        "id": "cloud_right",
+        "selector": ".cloud-right",
+        "locked": true
+      },
+      {
+        "id": "grass",
+        "selector": ".grass",
+        "locked": true
+      },
+
+      {
+        "id": "heart_left_top",
+        "selector": ".heart-left-top",
+        "locked": true
+      },
+      {
+        "id": "heart_left_mid",
+        "selector": ".heart-left-mid",
+        "locked": true
+      },
+      {
+        "id": "heart_left_bottom",
+        "selector": ".heart-left-bottom",
+        "locked": true
+      },
+      {
+        "id": "heart_right_top",
+        "selector": ".heart-right-top",
+        "locked": true
+      },
+      {
+        "id": "heart_right_mid",
+        "selector": ".heart-right-mid",
+        "locked": true
+      }
+    ],
+
+    "colors": [
+      {
+        "id": "title_color",
+        "label": "Title Color",
+        "selector": ".title",
+        "property": "color",
+        "default": "#4aba3f"
+      },
+      {
+        "id": "subtitle_color",
+        "label": "Subtitle Color",
+        "selector": ".subtitle",
+        "property": "color",
+        "default": "#c39a41"
+      }
+    ]
+  },
+
+  "fonts": [
+    {
+      "family": "Poppins",
+      "weights": [400, 600, 700],
+      "provider": "google"
+    }
+  ],
+
+  "export": {
+    "formats": ["png", "jpeg", "pdf"],
+    "defaultScale": 2
+  },
+
+  "features": {
+    "responsive": false,
+    "dragAndDrop": false,
+    "layerEditing": false,
+    "multiLanguage": true
+  },
+
+  "localization": {
+    "defaultLanguage": "en",
+    "supported": ["en"]
+  }
+}
