@@ -1,65 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elegance Banquet Invitation</title>
-    <link rel="stylesheet" href="style.css" />
 
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="style.css" />
+    <base href="http://localhost:8080/TemplateCards/" />
   </head>
 
   <body>
-    <div class="invitation-wrapper">
-      <!-- Background Florals -->
+    <div class="card-wrapper">
+      <!-- 🌸 Floral Border Frame PNG -->
       <img
-        class="bg-floral top-left"
-        src="https://i.imgur.com/oe1n7mR.png"
-        alt=""
-      />
-      <img
-        class="bg-floral bottom-right"
-        src="https://i.imgur.com/RLpZq67.png"
-        alt=""
+        src="template_05/images/flower-border.png"
+        class="flower-border"
+        alt="Floral Border"
       />
 
-      <!-- White Panel -->
-      <div class="invitation-card">
-        <p class="small-header">
-          YOU’RE INVITED TO A NIGHT OF ELEGANCE<br />AND CELEBRATION
-        </p>
+      <div class="invitation-wrapper">
+        <!-- White Panel -->
+        <div class="invitation-card">
+          <p class="small-header editable" data-editable="header">
+            YOU’RE INVITED TO A NIGHT OF ELEGANCE<br />AND CELEBRATION
+          </p>
 
-        <h1 class="title-script">Elegance<br />Banquet</h1>
+          <h1 class="title-script editable" data-editable="title">
+            Elegance<br />Banquet
+          </h1>
 
-        <p class="para">
-          The ambiance will be one of sophistication and grandeur, as we come
-          together to savor the joys of life and toast to shared
-          accomplishments.
-        </p>
+          <p class="para editable" data-editable="description">
+            The ambiance will be one of sophistication and grandeur, as we come
+            together to savor the joys of life and toast to shared
+            accomplishments.
+          </p>
 
-        <div class="date-box">
-          <div>JULY</div>
-          <div class="day">12</div>
-          <div>2028</div>
+          <div class="date-box">
+            <div class="editable" data-editable="month">JULY</div>
+
+            <div class="day editable" data-editable="day">12</div>
+
+            <div class="editable" data-editable="year">2028</div>
+          </div>
+
+          <p class="details editable" data-editable="eventDetails">
+            7 PM ONWARDS<br />
+            LOCAL CHURCH<br />
+            108 N PLATINUM AVE DEMING, NM 88030
+          </p>
+
+          <p class="footer editable" data-editable="rsvp">
+            PLEASE RSVP TO 725-230-2997 BY JULY 10, 2029 TO SECURE YOUR PLACE AT
+            THIS EXTRAORDINARY EVENT.
+          </p>
         </div>
-
-        <p class="details">
-          7 PM ONWARDS<br />
-          LOCAL CHURCH<br />
-          108 N PLATINUM AVE DEMING, NM 88030
-        </p>
-
-        <p class="footer">
-          PLEASE RSVP TO 725-230-2997 BY JULY 10, 2029 TO SECURE<br />
-          YOUR PLACE AT THIS EXTRAORDINARY EVENT.
-        </p>
       </div>
     </div>
-
-    <script src="script.js"></script>
   </body>
 </html>

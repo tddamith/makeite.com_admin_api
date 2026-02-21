@@ -1,191 +1,72 @@
 {
-  "meta": {
-    "templateId": "wedding-invite-v1",
-    "version": 1
+  "canvas": {
+    "width": 460,
+    "height": 720
   },
-
-  "theme": {
-    "vars": {
-      "bg": "#f7e9e2",
-      "card": "#fff9f5",
-      "ink": "#3b2a24",
-      "muted": "#7a5a4a",
-      "primary": "#8b4e46",
-      "radius": "16px"
-    },
-    "fonts": [
-      "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap"
-    ]
-  },
-
-  "page": {
-    "title": "Anna & Richard — Wedding Invitation"
-  },
-
-  "brand": {
-    "logo": "assets/images/logo.png"
-  },
-
-  "hero": {
-    "title": "Anna & Richard",
-    "subtitle": "We invite you to join our wedding",
-    "background": "assets/images/floral-bg-top.png"
-  },
-
-  "event": {
-    "date": "Sunday, 25 June 2024",
-    "time": "1:00 PM",
-    "venue": "123 Anywhere St, Any City"
-  },
-
-  "cta": {
-    "label": "RSVP",
-    "href": "#rsvp"
-  },
-
-  "details": {
-    "heading": "Wedding Details",
-    "body": "One o’clock in the afternoon. Ceremony followed by reception."
-  },
-
-  "form": {
-    "heading": "RSVP",
-    "note": "Please respond by June 10.",
-    "fields": [
+  "editable": {
+    "text": [
       {
-        "id": "full_name",
-        "name": "full_name",
-        "label": "Full Name",
+        "id": "intro",
+        "selector": "[data-editable='intro']",
+        "type": "text"
+      },
+      {
+        "id": "names",
+        "selector": "[data-editable='names']",
         "type": "text",
-        "placeholder": "Your name",
-        "required": true,
-        "fullWidth": true
+        "fontFamily": "Great Vibes",
+        "fontSize": 55
       },
       {
-        "id": "email",
-        "name": "email",
-        "label": "Email",
-        "type": "email",
-        "placeholder": "you@example.com",
-        "required": true
+        "id": "inviteText",
+        "selector": "[data-editable='inviteText']",
+        "type": "text"
       },
       {
-        "id": "guests",
-        "name": "guests",
-        "label": "Guests",
-        "type": "number",
-        "placeholder": "1"
+        "id": "month",
+        "selector": "[data-editable='month']",
+        "type": "text"
       },
       {
-        "id": "message",
-        "name": "message",
-        "label": "Message",
-        "type": "textarea",
-        "placeholder": "Any notes for us?",
-        "fullWidth": true
+        "id": "day",
+        "selector": "[data-editable='day']",
+        "type": "text"
+      },
+      {
+        "id": "date",
+        "selector": "[data-editable='date']",
+        "type": "text",
+        "fontSize": 30
+      },
+      {
+        "id": "year",
+        "selector": "[data-editable='year']",
+        "type": "text"
+      },
+      {
+        "id": "details",
+        "selector": "[data-editable='details']",
+        "type": "text"
+      },
+      {
+        "id": "footer",
+        "selector": "[data-editable='footer']",
+        "type": "text",
+        "fontFamily": "Great Vibes"
       }
     ],
-    "submit": {
-      "label": "Send RSVP"
-    }
-  },
-
-  "footer": {
-    "note": "Reception to follow"
-  },
-
-  "backgrounds": [
-    {
-      "selector": ".hero",
-      "image": "assets/images/floral-bg-top.png",
-      "size": "cover",
-      "position": "center"
-    },
-    {
-      "selector": ".card",
-      "image": "assets/images/floral-bg-bottom.png",
-      "size": "contain",
-      "position": "bottom"
-    }
-  ],
-
-  "animations": [
-    {
-      "selector": "[data-animate='hero']",
-      "class": "animate-fade-in-up",
-      "delayMs": 120
-    },
-    {
-      "selector": "#cta",
-      "class": "animate-pop",
-      "delayMs": 260
-    },
-    {
-      "selector": "[data-animate='form']",
-      "class": "animate-fade-in-up",
-      "delayMs": 180
-    }
-  ],
-
-  "buttons": [
-    {
-      "selector": "#cta",
-      "variant": "primary",
-      "href": "#rsvp",
-      "styles": {
-        "fontSize": "16px",
-        "padding": "14px 26px"
+    "images": [
+      {
+        "id": "backgroundFlower",
+        "selector": ".flowers",
+        "type": "image"
+      },
+      {
+        "id": "flowerBorder",
+        "selector": ".flower-border",
+        "type": "image",
+        "locked": true
       }
-    }
-  ],
-
-  "styles": {
-    "hero_title": {
-      "fontSize": "clamp(36px, 6vw, 64px)",
-      "fontWeight": "600",
-      "letterSpacing": "-0.01em"
-    },
-    "hero_subtitle": {
-      "fontSize": "clamp(14px, 2.5vw, 18px)"
-    },
-    "event_date": {
-      "fontWeight": "600"
-    },
-    "details_heading": {
-      "fontSize": "clamp(18px, 3vw, 26px)",
-      "marginBottom": "10px"
-    }
-  },
-
-  "card": {
-    "size": {
-      "width": 1500,
-      "height": 2100
-    },
-    "dpi": 300,
-    "safePadding": 60,
-    "bleed": 0,
-    "backgroundColor": "#fff9f5",
-    "transparentBackground": false,
-    "export": {
-      "scale": 2,
-      "filename": "anna-richard-invitation.png"
-    },
-    "preview": {
-      "fit": true,
-      "zoom": 1
-    }
-  },
-
-  "intro": {
-    "enabled": true,
-    "useOnce": true,
-    "patternImage": "assets/images/envelope-pattern.png",
-    "timing": {
-      "flap": 800,
-      "letter": 1200,
-      "fade": 400,
-      "holdAfter": 300
-    }
+    ]
   }
 }

@@ -1,17 +1,37 @@
 body {
   margin: 0;
-  background: #e7dfd3; /* soft beige */
+  background: #e7dfd3;
   display: flex;
   justify-content: center;
   padding: 40px;
   font-family: "Montserrat", sans-serif;
 }
 
+/* Wrapper for border + card */
+.card-wrapper {
+  position: relative;
+  width: 540px;
+}
+
+/* Floral PNG border */
+.flower-border {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* Main invitation container */
 .invitation-wrapper {
   position: relative;
   width: 500px;
+  margin: 20px auto;
+  z-index: 5;
 }
 
+/* Decorative florals */
 .bg-floral {
   position: absolute;
   width: 260px;
@@ -29,14 +49,15 @@ body {
   right: -20px;
 }
 
+/* White panel */
 .invitation-card {
   background: #ffffff;
-  padding: 40px 30px;
+  padding: 50px 35px;
   border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
   position: relative;
   z-index: 10;
-  text-align: center;
 }
 
 .small-header {
@@ -86,4 +107,10 @@ body {
   margin-top: 30px;
   color: #6e6e6e;
   letter-spacing: 0.4px;
+}
+
+/* Editor highlight */
+.editable.selected {
+  outline: 2px solid #4da3ff;
+  cursor: pointer;
 }

@@ -1,14 +1,8 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: #f9f7f4;
-  font-family: "Playfair Display", serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+.card-wrapper {
+  position: relative;
+  width: 700px;
+  height: 900px;
 }
-
 .card {
   width: 650px;
   height: 850px;
@@ -18,68 +12,30 @@ body {
   border-radius: 6px;
   position: relative;
   overflow: hidden;
+  margin: 25px auto;
+  z-index: 5; /* below border */
 }
-
-/* Floral Background Decorations */
-.top-floral,
-.bottom-floral {
-  position: absolute;
-  opacity: 0.45;
-  pointer-events: none;
-}
-
 .top-floral {
+  position: absolute;
   top: 0;
   right: 0;
-  width: 260px;
+  width: 650px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.editable.selected {
+  outline: 2px solid #4da3ff;
+  cursor: pointer;
 }
 
-.bottom-floral {
-  bottom: 0;
+/* Full floral border frame */
+.flower-border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
   left: 0;
-  width: 260px;
-}
-
-/* Title Styling */
-.invite-text {
-  text-align: center;
-  letter-spacing: 1px;
-  color: #8d7c56;
-  font-size: 14px;
-  margin-bottom: 30px;
-}
-
-.names {
-  text-align: center;
-  font-family: "Great Vibes", cursive;
-  font-size: 55px;
-  color: #b08c50;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.and {
-  text-align: center;
-  font-size: 26px;
-  margin: 4px 0;
-  color: #b08c50;
-}
-
-/* Event Details */
-.details {
-  margin-top: 35px;
-  text-align: center;
-  color: #333;
-  font-size: 16px;
-  line-height: 28px;
-}
-
-/* Editable hover */
-.editable {
-  cursor: text;
-  border-bottom: 1px dashed transparent;
-  transition: 0.2s;
-}
-.editable:hover {
-  border-color: #d1b98c;
+  z-index: 20;
+  pointer-events: none;
 }

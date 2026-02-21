@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,40 +12,64 @@
     />
 
     <link rel="stylesheet" href="style.css" />
+    <base href="http://localhost:8080/TemplateCards/" />
   </head>
+
   <body>
-    <div class="invitation-card">
-      <img src="top-flowers.png" class="flowers top" alt="flowers" />
+    <div class="card-wrapper">
+      <!-- Full Floral Border Frame -->
+      <img
+        src="template_03/images/flower-border.png"
+        class="flower-border"
+        alt="Floral Border"
+      />
 
-      <div class="content">
-        <p class="small-text">TOGETHER<br />WITH THEIR FAMILIES</p>
+      <div class="invitation-card">
+        <!-- Background Flower -->
+        <img
+          src="template_03/images/background-flower.png"
+          class="flowers"
+          alt="flowers"
+        />
 
-        <h1 class="names">Anna<br /><span>&</span><br />Richard</h1>
+        <div class="content">
+          <p class="small-text editable" data-editable="intro">
+            TOGETHER<br />WITH THEIR FAMILIES
+          </p>
 
-        <p class="invite-text">WE INVITE YOU TO JOIN OUR WEDDING</p>
+          <h1 class="names editable" data-editable="names">
+            Anna<br /><span>&</span><br />Richard
+          </h1>
 
-        <div class="date-box">
-          <div class="col">
-            <p class="label">JUN</p>
+          <p class="invite-text editable" data-editable="inviteText">
+            WE INVITE YOU TO JOIN OUR WEDDING
+          </p>
+
+          <div class="date-box">
+            <div class="col editable" data-editable="month">
+              <p class="label">JUN</p>
+            </div>
+
+            <div class="col center">
+              <p class="day editable" data-editable="day">SUN</p>
+              <p class="date editable" data-editable="date">25</p>
+            </div>
+
+            <div class="col editable" data-editable="year">
+              <p class="label">2024</p>
+            </div>
           </div>
-          <div class="col center">
-            <p class="day">SUN</p>
-            <p class="date">25</p>
-          </div>
-          <div class="col">
-            <p class="label">2024</p>
-          </div>
+
+          <p class="details editable" data-editable="details">
+            ONE O’CLOCK IN THE AFTERNOON<br />
+            123 ANYWHERE ST., ANY CITY
+          </p>
+
+          <p class="footer-script editable" data-editable="footer">
+            Reception to follow
+          </p>
         </div>
-
-        <p class="details">
-          ONE O’CLOCK IN THE AFTERNOON<br />
-          123 ANYWHERE ST., ANY CITY
-        </p>
-
-        <p class="footer-script">Reception to follow</p>
       </div>
-
-      <img src="bottom-flowers.png" class="flowers bottom" alt="flowers" />
     </div>
   </body>
 </html>
