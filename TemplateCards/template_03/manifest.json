@@ -1,72 +1,175 @@
 {
+  "templateId": "template_03_wedding_invitation",
+  "name": "Elegant Floral Wedding Invitation",
+  "category": "wedding",
+  "version": "1.0.0",
+  "author": "Your Brand Name",
+  "thumbnail": "thumbnail.png",
+
   "canvas": {
-    "width": 460,
-    "height": 720
+    "width": 420,
+    "height": 650
   },
+
+  "layout": {
+    "containerSelector": ".invitation-card",
+    "locked": true
+  },
+
   "editable": {
     "text": [
       {
         "id": "intro",
+        "label": "Intro Text",
         "selector": "[data-editable='intro']",
-        "type": "text"
+        "type": "textarea",
+        "default": "TOGETHER\nWITH THEIR FAMILIES",
+        "multiline": true,
+        "maxLength": 80,
+        "styleEditable": ["color", "fontSize", "letterSpacing"]
       },
       {
         "id": "names",
+        "label": "Couple Names",
         "selector": "[data-editable='names']",
-        "type": "text",
-        "fontFamily": "Great Vibes",
-        "fontSize": 55
+        "type": "textarea",
+        "default": "Anna\n&\nRichard",
+        "multiline": true,
+        "maxLength": 60,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "inviteText",
+        "label": "Invitation Line",
         "selector": "[data-editable='inviteText']",
-        "type": "text"
+        "type": "text",
+        "default": "WE INVITE YOU TO JOIN OUR WEDDING",
+        "maxLength": 100,
+        "styleEditable": ["color", "fontSize", "letterSpacing"]
       },
       {
         "id": "month",
-        "selector": "[data-editable='month']",
-        "type": "text"
+        "label": "Month",
+        "selector": "[data-editable='month'] .label",
+        "type": "text",
+        "default": "JUN",
+        "maxLength": 10
       },
       {
         "id": "day",
+        "label": "Day",
         "selector": "[data-editable='day']",
-        "type": "text"
+        "type": "text",
+        "default": "SUN",
+        "maxLength": 10
       },
       {
         "id": "date",
+        "label": "Date",
         "selector": "[data-editable='date']",
         "type": "text",
-        "fontSize": 30
+        "default": "25",
+        "maxLength": 4
       },
       {
         "id": "year",
-        "selector": "[data-editable='year']",
-        "type": "text"
+        "label": "Year",
+        "selector": "[data-editable='year'] .label",
+        "type": "text",
+        "default": "2024",
+        "maxLength": 6
       },
       {
         "id": "details",
+        "label": "Event Details",
         "selector": "[data-editable='details']",
-        "type": "text"
+        "type": "textarea",
+        "default": "ONE O’CLOCK IN THE AFTERNOON\n123 ANYWHERE ST., ANY CITY",
+        "multiline": true,
+        "maxLength": 150,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "footer",
+        "label": "Footer Script",
         "selector": "[data-editable='footer']",
         "type": "text",
-        "fontFamily": "Great Vibes"
+        "default": "Reception to follow",
+        "maxLength": 80,
+        "styleEditable": ["color", "fontSize"]
       }
     ],
+
     "images": [
       {
-        "id": "backgroundFlower",
+        "id": "background_flower",
+        "label": "Background Flower",
         "selector": ".flowers",
-        "type": "image"
+        "replaceable": true,
+        "allowedFormats": ["png", "jpg", "webp"]
       },
       {
-        "id": "flowerBorder",
-        "selector": ".flower-border",
-        "type": "image",
-        "locked": true
+        "id": "background_texture",
+        "label": "Card Background",
+        "selector": ".invitation-card",
+        "cssProperty": "background-image",
+        "replaceable": true,
+        "allowedFormats": ["png", "jpg", "webp"]
+      }
+    ],
+
+    "colors": [
+      {
+        "id": "primary_text_color",
+        "label": "Primary Text Color",
+        "selector": ".names",
+        "property": "color",
+        "default": "#8b4e46"
+      },
+      {
+        "id": "secondary_text_color",
+        "label": "Secondary Text Color",
+        "selector": ".small-text",
+        "property": "color",
+        "default": "#7a5a4a"
+      },
+      {
+        "id": "details_color",
+        "label": "Details Text Color",
+        "selector": ".details",
+        "property": "color",
+        "default": "#6b5246"
       }
     ]
+  },
+
+  "fonts": [
+    {
+      "family": "Montserrat",
+      "weights": [400, 600, 700],
+      "provider": "google"
+    },
+    {
+      "family": "Priestacy",
+      "weights": [400],
+      "provider": "local"
+    }
+  ],
+
+  "export": {
+    "formats": ["png", "jpeg", "pdf"],
+    "defaultScale": 2
+  },
+
+  "features": {
+    "responsive": false,
+    "dragAndDrop": false,
+    "layerEditing": false,
+    "multiLanguage": true
+  },
+
+  "localization": {
+    "defaultLanguage": "en",
+    "supported": ["en"]
   }
 }

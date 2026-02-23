@@ -1,83 +1,183 @@
 {
+  "templateId": "template_02_25th_anniversary",
+  "name": "Elegant 25th Anniversary Invitation",
+  "category": "anniversary",
+  "version": "1.0.0",
+  "author": "Your Brand Name",
+  "thumbnail": "thumbnail.png",
+
   "canvas": {
     "width": 760,
-    "height": 900
+    "height": 1000
   },
+
+  "layout": {
+    "containerSelector": ".invitation",
+    "locked": true
+  },
+
   "editable": {
     "text": [
       {
-        "id": "shortNames",
-        "selector": "[data-editable='shortNames']",
-        "type": "text"
-      },
-      {
         "id": "mainNames",
+        "label": "Couple Names",
         "selector": "[data-editable='mainNames']",
         "type": "text",
-        "fontFamily": "Great Vibes",
-        "fontSize": 56
+        "default": "Michelle & Daniel",
+        "maxLength": 60,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "surname",
+        "label": "Surname",
         "selector": "[data-editable='surname']",
-        "type": "text"
+        "type": "text",
+        "default": "Walker",
+        "maxLength": 40,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "eventTitle",
+        "label": "Event Title",
         "selector": "[data-editable='eventTitle']",
         "type": "text",
-        "fontFamily": "Playfair Display",
-        "fontSize": 44
+        "default": "25TH ANNIVERSARY",
+        "maxLength": 50,
+        "styleEditable": ["color", "fontSize", "letterSpacing"]
       },
       {
         "id": "dateNumber",
+        "label": "Date Number",
         "selector": "[data-editable='dateNumber']",
         "type": "text",
-        "fontSize": 88
+        "default": "24",
+        "maxLength": 4,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "dateLine1",
+        "label": "Date Line 1",
         "selector": "[data-editable='dateLine1']",
-        "type": "text"
+        "type": "text",
+        "default": "THURSDAY, SEPTEMBER",
+        "maxLength": 80,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "dateLine2",
+        "label": "Date Line 2",
         "selector": "[data-editable='dateLine2']",
-        "type": "text"
+        "type": "text",
+        "default": "AT 8:00 PM",
+        "maxLength": 50,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "location",
+        "label": "Location",
         "selector": "[data-editable='location']",
-        "type": "text"
+        "type": "textarea",
+        "default": "500 LUXE LANE, LOS ANGELES",
+        "multiline": true,
+        "maxLength": 120,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "description",
+        "label": "Description",
         "selector": "[data-editable='description']",
-        "type": "text"
+        "type": "textarea",
+        "default": "JOIN US FOR AN OPULENT NIGHT HONORING 25 YEARS OF LOVE AND COMMITMENT.",
+        "multiline": true,
+        "maxLength": 200,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "rsvp",
+        "label": "RSVP Details",
         "selector": "[data-editable='rsvp']",
-        "type": "text"
-      },
-      {
-        "id": "footerNote",
-        "selector": "[data-editable='footerNote']",
-        "type": "text"
+        "type": "textarea",
+        "default": "RSVP BY 17 SEPTEMBER\nWALKERS25@INVITATION.COM",
+        "multiline": true,
+        "maxLength": 150,
+        "styleEditable": ["color", "fontSize", "letterSpacing"]
       }
     ],
+
     "images": [
       {
-        "id": "flowerBorder",
+        "id": "flower_border",
+        "label": "Full Floral Border",
         "selector": ".flower-border",
-        "type": "image",
-        "locked": true
+        "replaceable": true,
+        "allowedFormats": ["png", "jpg", "webp"]
       },
       {
-        "id": "textureImage",
-        "selector": ".texture",
-        "type": "image"
+        "id": "flower_top",
+        "label": "Top Floral Decoration",
+        "selector": ".flower-top",
+        "replaceable": true,
+        "allowedFormats": ["png", "jpg", "webp"]
+      }
+    ],
+
+    "colors": [
+      {
+        "id": "accent_color",
+        "label": "Gold Accent Color",
+        "selector": ".couple-names",
+        "property": "color",
+        "default": "#e6c36a"
+      },
+      {
+        "id": "title_color",
+        "label": "Title Color",
+        "selector": ".big-title",
+        "property": "color",
+        "default": "rgba(255,255,255,0.92)"
+      },
+      {
+        "id": "body_text_color",
+        "label": "Body Text Color",
+        "selector": ".desc",
+        "property": "color",
+        "default": "rgba(255,255,255,0.92)"
       }
     ]
+  },
+
+  "fonts": [
+    {
+      "family": "Great Vibes",
+      "weights": [400],
+      "provider": "google"
+    },
+    {
+      "family": "Playfair Display",
+      "weights": [400, 700, 900],
+      "provider": "google"
+    },
+    {
+      "family": "Montserrat",
+      "weights": [300, 500, 700],
+      "provider": "google"
+    }
+  ],
+
+  "export": {
+    "formats": ["png", "jpeg", "pdf"],
+    "defaultScale": 2
+  },
+
+  "features": {
+    "responsive": false,
+    "dragAndDrop": false,
+    "layerEditing": false,
+    "multiLanguage": true
+  },
+
+  "localization": {
+    "defaultLanguage": "en",
+    "supported": ["en"]
   }
 }

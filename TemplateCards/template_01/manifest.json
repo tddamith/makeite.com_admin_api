@@ -1,62 +1,152 @@
 {
+  "templateId": "template_01_flower_frame_wedding",
+  "name": "Floral Frame Wedding Invitation",
+  "category": "wedding",
+  "version": "1.0.0",
+  "author": "Your Brand Name",
+  "thumbnail": "thumbnail.png",
+
   "canvas": {
-    "width": 700,
-    "height": 900
+    "width": 650,
+    "height": 850
   },
+
+  "layout": {
+    "containerSelector": ".card",
+    "locked": true
+  },
+
   "editable": {
     "text": [
       {
         "id": "inviteText",
+        "label": "Invitation Heading",
         "selector": "[data-editable='inviteText']",
-        "type": "text"
+        "type": "textarea",
+        "default": "PLEASE JOIN US IN THE CELEBRATION OF OUR WEDDING",
+        "multiline": true,
+        "maxLength": 120,
+        "styleEditable": ["color", "fontSize", "letterSpacing"]
       },
       {
         "id": "brideName",
+        "label": "Bride Name",
         "selector": "[data-editable='brideName']",
         "type": "text",
-        "fontFamily": "Great Vibes",
-        "fontSize": 55
+        "default": "Harper Russo",
+        "maxLength": 40,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "groomName",
+        "label": "Groom Name",
         "selector": "[data-editable='groomName']",
         "type": "text",
-        "fontFamily": "Great Vibes",
-        "fontSize": 55
+        "default": "Margarita Perez",
+        "maxLength": 40,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "saveTheDate",
+        "label": "Save The Date Text",
         "selector": "[data-editable='saveTheDate']",
-        "type": "text"
+        "type": "text",
+        "default": "Save The Date",
+        "maxLength": 50,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "eventDate",
+        "label": "Event Date",
         "selector": "[data-editable='eventDate']",
-        "type": "text"
+        "type": "text",
+        "default": "Sun, 10 July 2025",
+        "maxLength": 60,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "eventTime",
+        "label": "Event Time",
         "selector": "[data-editable='eventTime']",
-        "type": "text"
+        "type": "text",
+        "default": "At 11:00 AM",
+        "maxLength": 40,
+        "styleEditable": ["color", "fontSize"]
       },
       {
         "id": "location",
+        "label": "Location",
         "selector": "[data-editable='location']",
-        "type": "text"
+        "type": "textarea",
+        "default": "123 Anywhere St, Any City, ST 19215",
+        "multiline": true,
+        "maxLength": 150,
+        "styleEditable": ["color", "fontSize"]
       }
     ],
+
     "images": [
       {
-        "id": "flowerBorder",
+        "id": "flower_border",
+        "label": "Floral Frame",
         "selector": ".flower-border",
-        "type": "image",
-        "locked": true
+        "replaceable": true,
+        "allowedFormats": ["png", "jpg", "webp"]
+      }
+    ],
+
+    "colors": [
+      {
+        "id": "gold_color",
+        "label": "Gold Accent Color",
+        "selector": ".names",
+        "property": "color",
+        "default": "#b89a5a"
       },
       {
-        "id": "topFloral",
-        "selector": ".top-floral",
-        "type": "image"
+        "id": "heading_color",
+        "label": "Heading Color",
+        "selector": ".invite-text",
+        "property": "color",
+        "default": "#b89a5a"
+      },
+      {
+        "id": "details_color",
+        "label": "Details Text Color",
+        "selector": ".details",
+        "property": "color",
+        "default": "#6e5a3c"
       }
     ]
+  },
+
+  "fonts": [
+    {
+      "family": "Playfair Display",
+      "weights": [400, 600],
+      "provider": "google"
+    },
+    {
+      "family": "Great Vibes",
+      "weights": [400],
+      "provider": "google"
+    }
+  ],
+
+  "export": {
+    "formats": ["png", "jpeg", "pdf"],
+    "defaultScale": 2
+  },
+
+  "features": {
+    "responsive": false,
+    "dragAndDrop": false,
+    "layerEditing": false,
+    "multiLanguage": true
+  },
+
+  "localization": {
+    "defaultLanguage": "en",
+    "supported": ["en"]
   }
 }
