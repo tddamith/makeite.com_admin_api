@@ -50,7 +50,7 @@ body {
   width: 650px;
   height: 850px;
   background: linear-gradient(180deg, #f7f2ea 0%, #f1e9de 100%);
-  padding: 90px 80px;
+  padding: 180px 80px 90px 80px;
   border-radius: 6px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
   position: relative;
@@ -62,25 +62,14 @@ body {
 /* FLORAL DECORATION */
 /* ========================================= */
 
-.top-floral {
+.flower-border {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   top: 0;
   left: 0;
-  /* z-index: 20; */
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-/* Optional bottom floral if needed */
-.bottom-floral {
-  position: absolute;
-  bottom: -20px;
-  left: -20px;
-  width: 300px;
-  opacity: 0.25;
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -93,8 +82,9 @@ body {
   font-size: 14px;
   letter-spacing: 2px;
   color: var(--gold);
-  margin-bottom: 40px;
+  margin: 0 auto 40px;
   text-transform: uppercase;
+  max-width: 370px;
 }
 
 /* Couple Names */
@@ -134,10 +124,14 @@ body {
   font-size: 18px;
   color: var(--text-dark);
   line-height: 32px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .details div {
   margin-bottom: 8px;
+  max-width: 230px;
 }
 
 /* Save the date slightly emphasized */
