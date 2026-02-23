@@ -113,6 +113,18 @@ body {
   color: var(--gold-light);
 }
 
+.divider {
+  width: 240px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-light),
+    transparent
+  );
+  margin: 25px auto;
+}
+
 /* ========================================= */
 /* DETAILS SECTION */
 /* ========================================= */

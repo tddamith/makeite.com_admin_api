@@ -46,6 +46,16 @@ body {
   pointer-events: none;
 }
 
+.flower-top {
+  position: relative;
+  width: 150px;
+  height: auto;
+  object-fit: inherit;
+  margin: 0 auto 10px auto;
+  z-index: 20;
+  pointer-events: none;
+}
+
 /* ========================================= */
 /* MAIN INVITATION CARD */
 /* ========================================= */
@@ -154,7 +164,7 @@ body {
 
 .desc {
   text-align: center;
-  margin: 70px 60px 30px 60px;
+  margin: 50px 60px 30px 60px;
   font-style: italic;
   font-size: 22px;
   letter-spacing: 1px;
