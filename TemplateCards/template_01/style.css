@@ -1,35 +1,68 @@
+/* ========================================= */
+/* ROOT COLORS */
+/* ========================================= */
+
+:root {
+  --bg-main: #f4efe6;
+  --bg-soft: #f7f2ea;
+  --gold: #b89a5a;
+  --gold-light: #c9ae75;
+  --text-dark: #6e5a3c;
+}
+
+/* ========================================= */
+/* RESET */
+/* ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #eee8df;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Playfair Display", serif;
+}
+
+/* ========================================= */
+/* CARD WRAPPER */
+/* ========================================= */
+
 .card-wrapper {
   position: relative;
   width: 700px;
   height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* ========================================= */
+/* MAIN CARD */
+/* ========================================= */
+
 .card {
   width: 650px;
   height: 850px;
-  background: #ffffff;
-  padding: 60px 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(180deg, #f7f2ea 0%, #f1e9de 100%);
+  padding: 90px 80px;
   border-radius: 6px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
-  margin: 25px auto;
-  z-index: 5; /* below border */
-}
-.top-floral {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 650px;
-  opacity: 0.4;
-  pointer-events: none;
-}
-.editable.selected {
-  outline: 2px solid #4da3ff;
-  cursor: pointer;
+  text-align: center;
 }
 
-/* Full floral border frame */
-.flower-border {
+/* ========================================= */
+/* FLORAL DECORATION */
+/* ========================================= */
+
+.top-floral {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -37,5 +70,83 @@
   top: 0;
   left: 0;
   /* z-index: 20; */
+  opacity: 0.35;
   pointer-events: none;
+}
+
+/* Optional bottom floral if needed */
+.bottom-floral {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 300px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ========================================= */
+/* TEXT STYLES */
+/* ========================================= */
+
+/* Top small heading */
+.invite-text {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+/* Couple Names */
+.names {
+  font-family: "Great Vibes", cursive;
+  font-size: 64px;
+  color: var(--gold);
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Ampersand */
+.and {
+  font-size: 30px;
+  margin: 12px 0;
+  color: var(--gold-light);
+}
+
+/* ========================================= */
+/* DETAILS SECTION */
+/* ========================================= */
+
+.details {
+  margin-top: 60px;
+  font-size: 18px;
+  color: var(--text-dark);
+  line-height: 32px;
+}
+
+.details div {
+  margin-bottom: 8px;
+}
+
+/* Save the date slightly emphasized */
+.details div:first-child {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ========================================= */
+/* EDITOR SUPPORT */
+/* ========================================= */
+
+.editable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editable:hover {
+  outline: 1px dashed rgba(184, 154, 90, 0.4);
+}
+
+.editable.selected {
+  outline: 2px solid #4da3ff;
 }
