@@ -3,7 +3,7 @@
   src: url("./fonts/Priestacy.otf") format("truetype");
 }
 
-body {
+/* body {
   margin: 0;
   padding: 0;
   background: #f7e9e2;
@@ -12,12 +12,13 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
+} */
 
 /* Wrapper for border + card */
 .card-wrapper {
   position: relative;
   width: 460px;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Full flower border */

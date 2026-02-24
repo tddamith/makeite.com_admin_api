@@ -1,14 +1,15 @@
-body {
+/* body {
   margin: 0;
   background: #1e1e1e;
   display: flex;
   justify-content: center;
   padding: 40px 0;
   font-family: "Poppins", sans-serif;
-}
+} */
 
 .invite-card {
   width: 420px;
+  font-family: "Poppins", sans-serif;
   background: linear-gradient(#fff9e6, #fdf5d9);
   padding: 40px 0 0;
   text-align: center;

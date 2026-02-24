@@ -66,7 +66,7 @@ async def unzip_template(templateId: str):
 
 
         return {
-            "status": True if (html and css and js) else False,
+            "status": True if (html and css ) else False,
             "message": "Success",
             "data": {
                     "html": html,

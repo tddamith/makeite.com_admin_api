@@ -1,14 +1,15 @@
-body {
+/* body {
   background: #e8e8e8;
   margin: 0;
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
   padding: 40px;
-}
+} */
 
 /* Wrapper for border + card */
 .card-wrapper {
+  font-family: "Montserrat", sans-serif;
   position: relative;
   width: 520px;
   height: auto;

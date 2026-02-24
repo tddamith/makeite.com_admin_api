@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   margin: 0;
   background: linear-gradient(180deg, #062f29 0%, #0a3f35 100%);
   font-family: "Montserrat", sans-serif;
@@ -22,7 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 40px;
-}
+} */
 
 /* ========================================= */
 /* CARD WRAPPER (HOLDS BORDER + CARD) */
@@ -32,6 +32,7 @@ body {
   position: relative;
   width: var(--card-w);
   height: var(--card-h);
+  font-family: "Montserrat", sans-serif;
 }
 
 /* FULL GOLD FLORAL BORDER PNG */
