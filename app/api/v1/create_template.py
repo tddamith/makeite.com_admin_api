@@ -162,7 +162,7 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
         file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
 
        
-        await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
+        await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url, "file_name": template.filename}})
 
        
         return {
