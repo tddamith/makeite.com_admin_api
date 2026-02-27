@@ -77,6 +77,7 @@ async def update_template_zip(
                     "cover_image": new_file.cover_image.model_dump()
                         if new_file.cover_image else None,
                     "type": new_file.type,
+                    "file_name": new_file.filename,
                     "updated_at": datetime.utcnow()
                 }
             }
