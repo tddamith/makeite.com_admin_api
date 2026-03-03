@@ -53,7 +53,7 @@ async def unzip_template(templateId: str):
                     css = zip_ref.read(file).decode("utf-8")
 
                 # Read JS
-                if file.endswith(".js"):
+                if file.endswith(".jsx"):
                     js = zip_ref.read(file).decode("utf-8")
 
                 # Optional: theme.json
@@ -66,12 +66,12 @@ async def unzip_template(templateId: str):
 
 
         return {
-            "status": True if (html and css ) else False,
+            "status": True if ((html or js) and css ) else False,
             "message": "Success",
             "data": {
                     "html": html,
                     "css": css,
-                    "js": js,
+                    "jsx": js,
                     "theme": theme,
                     "manifest": manifest
             }
