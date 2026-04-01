@@ -16,26 +16,26 @@ router = APIRouter()
 async def create_category(category: CategoryBase):
     """Create a new category."""
     try:
+        category_dict = category.model_dump()
+
         category_collection = await mongo.get_collection("categories")
         
         # Check if category with the same name already exists
         existing_category = await category_collection.find_one({"category_name": category.category_name})
         if existing_category:
-            raise HTTPException(status_code=400, detail="Category with this name already exists.")
+            return {"status": False ,"message": "Category with this name already exists."}
         
         category_data = {
             "category_id": str(ObjectId()),
-            "icon_name": category.icon_name,
-            "category_name": category.category_name,
-            "sub_category":category.sub_category,
+            "category_name": category_dict["category_name"],
+            "sub_category": category_dict["sub_category"],
             "status": "new",
-            "created_at": datetime.utcnow()
-           
+            "created_at": datetime.utcnow()           
         }
         
         result = await category_collection.insert_one(category_data)
         
-        return {"message": "Category created successfully", "category_id": str(result.inserted_id)}
+        return {"status": True ,"message": "Category created successfully", "category_id": str(result.inserted_id)}
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
@@ -53,7 +53,7 @@ async def get_categories():
             category["_id"] = str(category["_id"])  # Convert ObjectId to string
             categories.append(category)
         
-        return {"categories": categories}
+        return {"status": True, "categories": categories}
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
@@ -63,11 +63,12 @@ async def get_categories():
 async def update_category(category_id: str, category: CategoryBase):
     """Update an existing category."""
     try:
+        category_data = category.model_dump()
         category_collection = await mongo.get_collection("categories")
         
         update_data = {
-            "icon_name": category.icon_name,
-            "category_name": category.category_name,
+            "category_name": category_data["category_name"],
+            "sub_category": category_data["sub_category"],
             "updated_at": datetime.utcnow()
         }
         
@@ -97,17 +98,14 @@ async def delete_category(category_id: str):
 
 
 #get sub categories by category_id
-@router.put("/update/sub-categories/by/{category_id}") 
-async def update_sub_categories(category_id: str):
+@router.get("/get/sub-categories/by/{category_id}") 
+async def get_sub_categories(category_id: str):
     """Retrieve sub-categories by category ID."""
     try:
-        sub_category_collection = await mongo.get_collection("categories")
+        category_collection = await mongo.get_collection("categories")
         
-        sub_categories_cursor = sub_category_collection.find({"category_id": category_id})
-        sub_categories = sub_categories_cursor["sub_category"] if sub_categories_cursor else []
-        async for sub_category in sub_categories_cursor:
-            sub_category["_id"] = str(sub_category["_id"])  
-            sub_categories.append(sub_category)
+        category = await category_collection.find_one({"category_id": category_id})
+        sub_categories = category.get("sub_category", []) if category else []
         
         return {"sub_categories": sub_categories}
     except Exception as e:
