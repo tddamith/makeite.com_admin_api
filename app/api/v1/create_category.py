@@ -27,6 +27,7 @@ async def create_category(category: CategoryBase):
             "category_id": str(ObjectId()),
             "icon_name": category.icon_name,
             "category_name": category.category_name,
+            "sub_category":category.sub_category,
             "status": "new",
             "created_at": datetime.utcnow()
            
@@ -91,5 +92,23 @@ async def delete_category(category_id: str):
         if result.deleted_count == 0:
             raise HTTPException(status_code=404, detail="Category not found.")
         return {"message": "Category deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
+
+
+#get sub categories by category_id
+@router.put("/update/sub-categories/by/{category_id}") 
+async def update_sub_categories(category_id: str):
+    """Retrieve sub-categories by category ID."""
+    try:
+        sub_category_collection = await mongo.get_collection("categories")
+        
+        sub_categories_cursor = sub_category_collection.find({"category_id": category_id})
+        sub_categories = sub_categories_cursor["sub_category"] if sub_categories_cursor else []
+        async for sub_category in sub_categories_cursor:
+            sub_category["_id"] = str(sub_category["_id"])  
+            sub_categories.append(sub_category)
+        
+        return {"sub_categories": sub_categories}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
