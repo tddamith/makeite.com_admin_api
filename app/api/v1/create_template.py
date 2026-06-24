@@ -91,7 +91,7 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
         # # Upload with progress tracking
         # await upload_to_s3_with_progress(file_data, unique_file_name, template.type, job_collection, job_id)
 
-        # # Upload done — mark job as completed
+        # # Upload done — mark template as completed
         # file_url = f"https://{AWS_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{unique_file_name}"
         # await template_collection.update_one({"template_id": template_id}, {"$set": {"file_url": file_url}})
         # await job_collection.update_one(
@@ -225,18 +225,18 @@ async def create_template(template: TemplateBase,background_tasks: BackgroundTas
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
-# Remove Job when completed progress
-@router.delete("/delete/job/{job_id}")
-async def delete_job(job_id: str):
-    """Delete a job by its ID."""
+# Remove Template when completed progress
+@router.delete("/delete/template/by/{template_id}")
+async def delete_template(template_id: str):
+    """Delete a template by its ID."""
     try:
-        job_collection = await mongo.get_collection("jobs")
-        result = await job_collection.delete_one({"job_id": job_id})
+        template_collection = await mongo.get_collection("templates")
+        result = await template_collection.delete_one({"template_id": template_id})
         if result.deleted_count == 0:
-            raise HTTPException(status_code=404, detail="Job not found.")
+            raise HTTPException(status_code=404, detail="Template not found.")
         return {
             "status": True,
-            "message": "Job deleted successfully"
+            "message": "Template deleted successfully"
         }
     except HTTPException:
         raise

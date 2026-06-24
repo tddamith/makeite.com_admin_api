@@ -27,3 +27,21 @@ async def get_job_progress(job_id:str):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
+    
+# Remove Job when completed progress
+@router.delete("/delete/job/{job_id}")
+async def delete_job(job_id: str):
+    """Delete a job by its ID."""
+    try:
+        job_collection = await mongo.get_collection("jobs")
+        result = await job_collection.delete_one({"job_id": job_id})
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Job not found.")
+        return {
+            "status": True,
+            "message": "Job deleted successfully"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}") 
