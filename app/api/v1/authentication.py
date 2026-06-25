@@ -1,6 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends
+from pydantic import BaseModel
 from app.api.v1.schemas.authentication import SignIn
 from app.utils.validation import generate_signature,refresh_signature
+
+class ValidateToken(BaseModel):
+    refresh_token: str
 
 router = APIRouter()
 
@@ -30,9 +34,12 @@ async def create_news(user: SignIn):
         return {"status": False, "message": str(e)}
     
 @router.post("/validate-token")
-async def refresh_token_endpoint(token: str):
+async def refresh_token_endpoint(request: ValidateToken):
+
     try:
-        if not token:
+        data = request.model_dump()
+
+        if not data["refresh_token"]:
             return {"status": False, "message": "Token is missing"}
 
         new_token = await generate_signature({"username": "admin"})
