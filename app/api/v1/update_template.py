@@ -27,9 +27,7 @@ async def update_template_zip(
         job_id = None
         file_url = template_data.get("file_url")
 
-        # ===================================
-        # ZIP FILE UPLOAD (only if provided)
-        # ===================================
+       
         if new_file.base64_data and new_file.filename:
 
             if not file_url:
@@ -64,9 +62,7 @@ async def update_template_zip(
                 job_id,
             )
 
-        # ===================================
-        # NORMAL TEMPLATE DATA UPDATE
-        # ===================================
+       
         await template_collection.update_one(
             {"template_id": template_id},
             {
@@ -83,9 +79,7 @@ async def update_template_zip(
             }
         )
 
-        # ===================================
-        # RESPONSE
-        # ===================================
+     
 
         if job_id:
             message = "Template updated, ZIP upload started"

@@ -10,21 +10,6 @@
   box-sizing: border-box;
 }
 
-/* body {
-  margin: 0;
-  padding: 0;
-  background: #eee8df;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: "Playfair Display", serif;
-} */
-
-/* ========================================= */
-/* CARD WRAPPER */
-/* ========================================= */
-
 .card-wrapper {
   position: relative;
   width: 700px;
@@ -34,10 +19,6 @@
   align-items: center;
   font-family: "Playfair Display", serif;
 }
-
-/* ========================================= */
-/* MAIN CARD */
-/* ========================================= */
 
 .card {
   width: 650px;
@@ -51,10 +32,6 @@
   text-align: center;
 }
 
-/* ========================================= */
-/* FLORAL DECORATION */
-/* ========================================= */
-
 .flower-border {
   position: absolute;
   width: 100%;
@@ -65,10 +42,6 @@
   opacity: 0.85;
   pointer-events: none;
 }
-
-/* ========================================= */
-/* TEXT STYLES */
-/* ========================================= */
 
 /* Top small heading */
 .invite-text {
@@ -108,10 +81,6 @@
   margin: 25px auto;
 }
 
-/* ========================================= */
-/* DETAILS SECTION */
-/* ========================================= */
-
 .details {
   margin-top: 60px;
   font-size: 18px;
@@ -132,10 +101,6 @@
   font-weight: 600;
   letter-spacing: 1px;
 }
-
-/* ========================================= */
-/* EDITOR SUPPORT */
-/* ========================================= */
 
 .editable {
   cursor: pointer;
